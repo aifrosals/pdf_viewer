@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+import 'dart:io' as io;
 
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -58,10 +58,10 @@ class PDFDocument {
   /// [String asset] path of the asset to be loaded
   ///
   static Future<PDFDocument> fromAsset(String asset) async {
-    File file;
+    io.File file;
     try {
       var dir = await getApplicationDocumentsDirectory();
-      file = File("${dir.path}/file.pdf");
+      file = io.File("${dir.path}/file.pdf");
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       await file.writeAsBytes(bytes, flush: true);
